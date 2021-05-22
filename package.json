@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/skunkix/bulletin-site/issues"
   },
-  "homepage": "https://github.com/skunkix/bulletin-site#readme"
+  "homepage": "https://github.com/skunkix/bulletin-site#readme",
+  "devDependencies": {
+    "webpack": "^5.37.1",
+    "webpack-cli": "^4.7.0"
+  }
 }
