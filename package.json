@@ -1,0 +1,19 @@
+{
+  "name": "bulletin-site",
+  "version": "0.1.0",
+  "description": "A virtual bulletin board where you can add images and gifs that everyone can see!",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skunkix/bulletin-site.git"
+  },
+  "author": "Daniel Calleja",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/skunkix/bulletin-site/issues"
+  },
+  "homepage": "https://github.com/skunkix/bulletin-site#readme"
+}
