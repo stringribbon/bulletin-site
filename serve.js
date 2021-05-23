@@ -1,13 +1,14 @@
 const app = require('express')();
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
+const config = require('./webpack.config.js');
 
 const port = process.env.PORT || 3000;
 const compiler = webpack(config);
 
 app.use(
   webpackDevMiddleware(compiler, {
-    publicPath: '/',
+    publicPath: config.output.publicPath,
   })
 );
 
