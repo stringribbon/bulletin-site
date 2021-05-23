@@ -6,15 +6,25 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
+      },
+      {
         test: /\.m?js$/,
         exclude: /(node_modules)/,
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env', "@babel/preset-typescript"],
+            presets: ['@babel/preset-env'],
             plugins: ['@babel/plugin-proposal-object-rest-spread']
           }
         }
+      },
+      {
+          test: /\.html$/,
+          exclude: /node_modules/,
+          use: {loader: 'html-loader'}
       }
     ],
   },
