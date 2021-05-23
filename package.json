@@ -30,5 +30,8 @@
     "webpack-dev-server": "^3.11.2",
     "webpack-dev-middleware": "^4.3.0",
     "html-webpack-plugin": "^5.3.1"
+  },
+  "engines": {
+    "node": "14.x"
   }
 }
