@@ -1,4 +1,5 @@
 import { displayBoard } from './board/board';
+import "./index.css";
 
 function getImages(): void {
     const xhr = new XMLHttpRequest();
