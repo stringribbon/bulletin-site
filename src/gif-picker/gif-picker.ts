@@ -12,5 +12,12 @@ export async function showGifPicker() {
 }
 
 function showSelection(gifSelection: IGif[]) {
-    console.log(gifSelection);
+    const grid = $('#gif-grid').empty();
+
+    gifSelection.forEach(gif => {
+        grid.append(`
+            <img src=${gif.images.downsized_large.url.split('?')[0]}></img>
+        `);
+    });
+
 }

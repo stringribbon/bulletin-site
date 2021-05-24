@@ -6,10 +6,24 @@
     align-items: center;;
 }
 
-#gif-picker > div {
+#gif-scroller {
     width: 700px;
     height: 500px;
     max-width: 80%;
     max-height: 80%;
     background-color: white;
+    overflow: scroll;
+}
+
+#gif-grid {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 20px 0;
+}
+
+#gif-grid > img {
+    width: 45%;
+    max-height: 300px;
+    margin-bottom: 10px;
 }
