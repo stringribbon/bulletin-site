@@ -23,6 +23,7 @@
   "homepage": "https://github.com/skunkix/bulletin-site#readme",
   "dependencies": {
     "@giphy/js-fetch-api": "^4.0.0",
+    "@giphy/js-types": "^4.0.0",
     "@types/jquery": "^3.5.5",
     "css-loader": "^5.2.5",
     "express": "^4.17.1",
