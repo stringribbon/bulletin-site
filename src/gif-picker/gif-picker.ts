@@ -15,9 +15,8 @@ function showSelection(gifSelection: IGif[]) {
     const grid = $('#gif-grid').empty();
 
     gifSelection.forEach(gif => {
-        grid.append(`
-            <img src=${gif.images.downsized_large.url.split('?')[0]}></img>
-        `);
+        grid.append(`<img id=${gif.id} src=${gif.images.downsized_large.url.split('?')[0]}></img>`);
+        $(`#${gif.id}`).on('click', () => { alert(gif.title); });
     });
 
 }

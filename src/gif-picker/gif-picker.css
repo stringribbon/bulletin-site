@@ -22,7 +22,7 @@
     padding: 20px 0;
 }
 
-#gif-grid > img {
+#gif-grid img {
     width: 45%;
     max-height: 300px;
     margin-bottom: 10px;
