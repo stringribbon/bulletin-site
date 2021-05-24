@@ -5,6 +5,7 @@
   "scripts": {
     "start": "node serve.js",
     "dev": "webpack serve --content-base ./dist --hot --inline --port 8080",
+    "dev-mocks": "USE_MOCKS=true && npm run dev",
     "build": "webpack",
     "build-watch": "webpack --config webpack.config.js --watch",
     "test": "jest",

@@ -1,12 +1,11 @@
 import $ from 'jquery';
 import pickerHtml from './gif-picker.html';
-import { GiphyFetch } from "@giphy/js-fetch-api";
-import { giphyApiKey } from "../../config";
 import "./gif-picker.css";
+import { fetchGiphySearch } from '../api/requests';
 
-export function showGifPicker() {
+export async function showGifPicker() {
     $(pickerHtml).appendTo('body');
 
-    // const gf = new GiphyFetch(giphyApiKey);
-    // gf.search("dogs", { offset: 0, limit: 10 });
+    const result = await fetchGiphySearch("rat");
+    console.log(result.data);
 }
