@@ -1,13 +1,12 @@
+import giphyFetchMock from './api/mocks/giphy-fetch-mock';
+import { mockPost } from './api/mocks/post-mock';
+import { Network } from './api/requests';
 import { displayBoard } from './board/board';
 import "./index.css";
 
-function getImages(): void {
-    const xhr = new XMLHttpRequest();
-    xhr.open("POST", "https://web-bulletin.herokuapp.com/getImages", true);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send(JSON.stringify({
-        value: "test"
-    }));
-}
-
 displayBoard();
+
+async function fetchu() {
+    console.log(await new Network(giphyFetchMock, mockPost).fetchBoardImages(4));
+}
+fetchu();
