@@ -8,6 +8,7 @@
     position: relative;
     width: 100%;
     height: 100%;
+    overflow: hidden;
 }
 
 #image-area > img {
@@ -15,8 +16,40 @@
 }
 
 #add-button {
-    display: block;
+    position: absolute;
     width: 100px;
     height: 50px;
-    margin: 10px auto 0 auto;
+    left: 50%;
+    top: 20px;
+}
+
+.horizontal-scroller {
+    position: absolute;
+    width: 100%;
+    height: 50px;
+    background: black;
+    opacity: 0.2;
+}
+
+.vertical-scroller {
+    position: absolute;
+    width: 50px;
+    height: 100%;
+    background: black;
+    opacity: 0.2;
+}
+
+#top-scroller, #left-scroller {
+    left: 0;
+    top: 0;
+}
+
+#right-scroller {
+    right: 0;
+    top: 0;
+}
+
+#bottom-scroller {
+    left: 0;
+    bottom: 0;
 }

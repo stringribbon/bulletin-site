@@ -7,6 +7,7 @@ import giphyFetchMock from '../api/mocks/giphy-fetch-mock';
 import { mockPost } from '../api/mocks/post-mock';
 import { Network } from '../api/requests';
 import { IImage } from '../types/IImage';
+import { registerScroller } from '../scrollers/scrollers';
 
 let network: Network;
 let boardId: string;
@@ -22,6 +23,11 @@ export function displayBoard(id: string): void {
     $('#add-button').on('click', () => {
         showGifPicker();
     });
+
+    registerScroller('#top-scroller', '#image-area', 0, -6);
+    registerScroller('#right-scroller', '#image-area', 6, 0);
+    registerScroller('#bottom-scroller', '#image-area', 0, 6);
+    registerScroller('#left-scroller', '#image-area', -6, 0);
 
     updateBoard();
     // setInterval(updateBoard, 5000);
