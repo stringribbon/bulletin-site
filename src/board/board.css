@@ -4,6 +4,16 @@
     height: 100%;
 }
 
+#image-area {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+#image-area > img {
+    position: absolute;
+}
+
 #add-button {
     display: block;
     width: 100px;
