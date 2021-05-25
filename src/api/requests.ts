@@ -16,15 +16,22 @@ export class Network {
     }
 
     async fetchGiphySearch(term: string, offset: number, limit: number): Promise<IGif[]> {
-        const response = await this.giphyFetch.search(term, { offset, limit });
-        return (response.data as IGif[]);
+        try {
+            const response = await this.giphyFetch.search(term, { offset, limit });
+            return (response.data as IGif[]);
+        } catch(err) {
+            throw err;
+        }
     }
 
     async fetchBoardImages(startTimestamp: number): Promise<IImage[]> {
-        return this.post("getImages").then((event: ProgressEvent) => {
-            const target: any = event.currentTarget;
+        try {
+            const progressEvent = await this.post("getImages");
+            const target: any = progressEvent.currentTarget;
             return JSON.parse(target.response).images;
-        });
+        } catch(err) {
+            throw err;
+        }
     }
 }
 
