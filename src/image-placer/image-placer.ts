@@ -25,6 +25,7 @@ export function startPlacement(imageUrl: string, callback: Callback): void {
             callback(getFinalImage());
             image.removeClass('being-placed');
             image.addClass('temp-image');
+            image.addClass('image-bounce');
             clearInterval(interval);
             $('body').css('cursor', 'auto');
             $('#board-overlay').hide();

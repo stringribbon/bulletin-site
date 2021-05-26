@@ -10,6 +10,7 @@ import { startPlacement } from '../image-placer/image-placer';
 let network: INetwork;
 let boardId: string;
 let lastUpdateTimestamp: number;
+let refreshTimeout: any;
 
 $(document).on('mousemove', (e) => {
     (window as any).mouseX = e.pageX;
@@ -46,7 +47,12 @@ async function updateBoard() {
         console.log("Board refresh request failed.", err);
     }
 
-    setTimeout(updateBoard, 5000);
+    rescheduleRefresh();
+}
+
+function rescheduleRefresh() {
+    if (refreshTimeout) clearTimeout(refreshTimeout);
+    refreshTimeout = setTimeout(updateBoard, 5000);
 }
 
 function addNewImages(newImages: IImage[]) {
@@ -60,5 +66,6 @@ function onImageSelected(url: string) {
 }
 
 function onImagePlaced(image: IImage) {
+    rescheduleRefresh();
     network.addImage(boardId, image);
 }
