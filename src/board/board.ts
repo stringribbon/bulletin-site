@@ -40,25 +40,39 @@ export function displayBoard(id: string, networkObj: INetwork): void {
 async function updateBoard() {
     try {
         const response = await network.fetchBoardImages(boardId, lastUpdateTimestamp);
-        addNewImages(response.data);
+        addNewImages(response.data, lastUpdateTimestamp === 0);
         lastUpdateTimestamp = response.timestamp;
         $('.temp-image').remove();
     } catch(err) {
         console.log("Board refresh request failed.", err);
     }
 
-    rescheduleRefresh();
+    rescheduleRefresh(5000);
 }
 
-function rescheduleRefresh() {
+function rescheduleRefresh(time: number) {
     if (refreshTimeout) clearTimeout(refreshTimeout);
-    refreshTimeout = setTimeout(updateBoard, 5000);
+    refreshTimeout = setTimeout(updateBoard, time);
 }
 
-function addNewImages(newImages: IImage[]) {
+const animationClasses = ['image-fall', 'image-sideflip', 'image-jump'];
+function addNewImages(newImages: IImage[], firstUpdate=false) {
     newImages.forEach(img => {
-        $('#image-area').append(`<img src=${img.url} style="width: ${img.width}px; left: ${img.x}px; top: ${img.y}px">`);
+        let shouldAnimate = !firstUpdate;
+        $('.temp-image').each((i, el) => {
+            if (elementMatchesImage($(el), img)) shouldAnimate = false;
+        });
+        $('#image-area').append(
+            `<img src=${img.url} class="${shouldAnimate ? animationClasses[Math.floor(Math.random() * animationClasses.length)] : '' }" style="width: ${img.width}px; left: ${img.x}px; top: ${img.y}px">`
+        );
     });
+}
+
+function elementMatchesImage(el: JQuery, img: IImage) {
+    console.log(el.attr('src'), img.url);
+    console.log(parseInt(el.css('left')), img.x);
+    console.log(parseInt(el.css('top')), img.y);
+    return el.attr('src') === img.url && parseInt(el.css('left')) === img.x && parseInt(el.css('top')) === img.y
 }
 
 function onImageSelected(url: string) {
@@ -66,6 +80,6 @@ function onImageSelected(url: string) {
 }
 
 function onImagePlaced(image: IImage) {
-    rescheduleRefresh();
+    rescheduleRefresh(750);
     network.addImage(boardId, image);
 }

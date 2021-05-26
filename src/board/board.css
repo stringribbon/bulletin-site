@@ -65,8 +65,44 @@
     animation-duration: 0.75s;
 }
 
+.image-fall {
+    animation-name: fall;
+    animation-duration: 3s;
+    animation-timing-function: linear;
+}
+
+.image-sideflip {
+    animation-name: sideflip;
+    animation-duration: 2.5s;
+    animation-timing-function: linear;
+}
+
+.image-jump {
+    animation-name: jump;
+    animation-duration: 3s;
+    animation-timing-function: ease-in-out;
+}
+
 @keyframes bounce {
     0% { transform: scale(1); }
     50% { transform: scale(1.5); }
     100% { transform: scale(1); }
-  }
+}
+
+@keyframes fall {
+    0% { transform: translateY(-800px) rotate(0deg); }
+    100% { transform: translateY(0) rotate(1440deg); }
+}
+
+@keyframes sideflip {
+    0% { transform: rotateY(90deg); }
+    30% { transform: translateX(500px) rotateY(0); }
+    100% { transform: translateX(0) rotateY(1080deg); }
+}
+
+@keyframes jump {
+    0% { -webkit-transform: rotateX(90deg) }
+    30% { -webkit-transform: translateY(300px) rotateX(0); }
+    70% { -webkit-transform: translateY(-300px) rotateZ(1080deg); }
+    100% { -webkit-transform: translateY(0) rotateZ(1080deg); }
+}
