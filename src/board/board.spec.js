@@ -16,7 +16,7 @@ describe("board - displays images from server and lets user add more", () => {
         jest.useRealTimers();
     });
 
-    xit('should refresh data every X seconds, sending timestamp of previous success', async () => {
+    it('should refresh data every X seconds, sending timestamp of previous success', async () => {
         networkMock.fetchBoardImages.mockReturnValueOnce(new Promise(resolve => {
             resolve({
                 data: [],
