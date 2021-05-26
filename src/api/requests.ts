@@ -1,6 +1,6 @@
 import { GiphyFetch } from "@giphy/js-fetch-api";
 import { IGif } from '@giphy/js-types';
-import { giphyApiKey, useMockApis } from "../../config";
+import { giphyApiKey } from "../../config";
 import { serverEndpoint } from '../../config';
 import { IImage } from "../types/IImage";
 import { IResponse } from "../types/IResponse";
@@ -25,7 +25,7 @@ export class Network {
 
     async fetchBoardImages(boardId: string, startTimestamp: number): Promise<IResponse<IImage[]>> {
         try {
-            const progressEvent = await this.post("getImages", { boardId: "0" });
+            const progressEvent = await this.post("getImages", { boardId, startTimestamp });
             const target: any = progressEvent.currentTarget;
             const response = JSON.parse(target.response)
             return {

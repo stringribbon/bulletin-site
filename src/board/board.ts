@@ -18,7 +18,7 @@ export function displayBoard(id: string, networkObj: INetwork): void {
     $(boardHtml).appendTo('body');
 
     $('#add-button').on('click', () => {
-        showGifPicker();
+        showGifPicker(network, onImageSelected);
     });
 
     const scrollSpeed = 10;
@@ -46,4 +46,8 @@ function addNewImages(newImages: IImage[]) {
     newImages.forEach(img => {
         $('#image-area').append(`<img src=${img.url} style="width: ${img.width}px; left: ${img.x}px; top: ${img.y}px">`);
     });
+}
+
+function onImageSelected(url: string) {
+
 }
