@@ -3,5 +3,5 @@ export interface IImage {
     width: number,
     x: number,
     y: number,
-    timestamp: number
+    timestamp?: number
 }

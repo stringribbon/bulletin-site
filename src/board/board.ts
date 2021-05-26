@@ -5,10 +5,16 @@ import { showGifPicker } from '../gif-picker/gif-picker';
 import { IImage } from '../types/IImage';
 import { registerScroller } from '../scrollers/scrollers';
 import { INetwork } from '../types/INetwork';
+import { startPlacement } from '../image-placer/image-placer';
 
 let network: INetwork;
 let boardId: string;
 let lastUpdateTimestamp: number;
+
+$(document).on('mousemove', (e) => {
+    (window as any).mouseX = e.pageX;
+    (window as any).mouseY = e.pageY;
+});
 
 export function displayBoard(id: string, networkObj: INetwork): void {
     network = networkObj;
@@ -49,5 +55,9 @@ function addNewImages(newImages: IImage[]) {
 }
 
 function onImageSelected(url: string) {
+    startPlacement(url, onImagePlaced);
+}
 
+function onImagePlaced(image: IImage) {
+    console.log("Placing", image);
 }

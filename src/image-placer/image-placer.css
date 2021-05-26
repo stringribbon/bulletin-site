@@ -1,0 +1,4 @@
+.being-placed {
+    z-index: 2;
+    pointer-events: none;
+}
