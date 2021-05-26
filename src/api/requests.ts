@@ -3,6 +3,7 @@ import { IGif } from '@giphy/js-types';
 import { giphyApiKey, useMockApis } from "../../config";
 import { serverEndpoint } from '../../config';
 import { IImage } from "../types/IImage";
+import { IResponse } from "../types/IResponse";
 
 export class Network {
     private giphyFetch;
@@ -22,11 +23,15 @@ export class Network {
         }
     }
 
-    async fetchBoardImages(boardId: string, startTimestamp: number): Promise<IImage[]> {
+    async fetchBoardImages(boardId: string, startTimestamp: number): Promise<IResponse<IImage[]>> {
         try {
             const progressEvent = await this.post("getImages", { boardId: "0" });
             const target: any = progressEvent.currentTarget;
-            return JSON.parse(target.response).images;
+            const response = JSON.parse(target.response)
+            return {
+                data: response.images,
+                timestamp: response.timestamp
+            }
         } catch(err) {
             throw err;
         }

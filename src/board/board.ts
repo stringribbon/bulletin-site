@@ -2,19 +2,16 @@ import $ from 'jquery';
 import boardHtml from './board.html';
 import "./board.css";
 import { showGifPicker } from '../gif-picker/gif-picker';
-import { useMockApis } from '../../config';
-import giphyFetchMock from '../api/mocks/giphy-fetch-mock';
-import { mockPost } from '../api/mocks/post-mock';
-import { Network } from '../api/requests';
 import { IImage } from '../types/IImage';
 import { registerScroller } from '../scrollers/scrollers';
+import { INetwork } from '../types/INetwork';
 
-let network: Network;
+let network: INetwork;
 let boardId: string;
 let lastUpdateTimestamp: number;
 
-export function displayBoard(id: string): void {
-    network = new Network(useMockApis && giphyFetchMock, useMockApis && mockPost);
+export function displayBoard(id: string, networkObj: INetwork): void {
+    network = networkObj;
     boardId = id;
     lastUpdateTimestamp = 0;
 
@@ -31,15 +28,18 @@ export function displayBoard(id: string): void {
     registerScroller('#left-scroller', '#board', -scrollSpeed, 0);
 
     updateBoard();
-    // setInterval(updateBoard, 5000);
 }
 
 async function updateBoard() {
     try {
-        addNewImages(await network.fetchBoardImages(boardId, lastUpdateTimestamp));
+        const response = await network.fetchBoardImages(boardId, lastUpdateTimestamp);
+        addNewImages(response.data);
+        lastUpdateTimestamp = response.timestamp;
     } catch(err) {
-        console.log("Board refresh request failed.");
+        console.log("Board refresh request failed.", err);
     }
+
+    setTimeout(updateBoard, 5000);
 }
 
 function addNewImages(newImages: IImage[]) {
