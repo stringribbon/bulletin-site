@@ -8,7 +8,8 @@ type Callback = (selectedUrl: string) => any;
 let selectedCallback: Callback;
 
 export async function showGifPicker(network: INetwork, callback: Callback) {
-    $(pickerHtml).appendTo('body');
+    $('#board-overlay').show();
+    $(pickerHtml).appendTo('#board-overlay');
     selectedCallback = callback;
 
     const searchResult = await network.fetchGiphySearch("rat", 0, 10);
@@ -27,5 +28,5 @@ function showSelection(gifSelection: IGif[]) {
 }
 
 function hide() {
-    $('#gif-picker-main').remove();
+    $('#gif-picker').remove();
 }

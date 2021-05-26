@@ -7,6 +7,7 @@ type Callback = (image: IImage) => any;
 export function startPlacement(imageUrl: string, callback: Callback): void {
     const image = $(`<img src=${imageUrl} class="being-placed" style="width: 300px;}px">`);
     $('#image-area').append(image);
+    $('#board-overlay').show();
     
     const board = $('#board');
 
@@ -22,9 +23,11 @@ export function startPlacement(imageUrl: string, callback: Callback): void {
     setTimeout(() => {
         $(document).one('click', () => {
             callback(getFinalImage());
-            image.remove();
+            image.removeClass('being-placed');
+            image.addClass('temp-image');
             clearInterval(interval);
             $('body').css('cursor', 'auto');
+            $('#board-overlay').hide();
         });
     }, 1);
 }

@@ -41,6 +41,7 @@ async function updateBoard() {
         const response = await network.fetchBoardImages(boardId, lastUpdateTimestamp);
         addNewImages(response.data);
         lastUpdateTimestamp = response.timestamp;
+        $('.temp-image').remove();
     } catch(err) {
         console.log("Board refresh request failed.", err);
     }
@@ -59,5 +60,5 @@ function onImageSelected(url: string) {
 }
 
 function onImagePlaced(image: IImage) {
-    console.log("Placing", image);
+    network.addImage(boardId, image);
 }

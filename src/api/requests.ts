@@ -3,9 +3,10 @@ import { IGif } from '@giphy/js-types';
 import { giphyApiKey } from "../../config";
 import { serverEndpoint } from '../../config';
 import { IImage } from "../types/IImage";
+import { INetwork } from "../types/INetwork";
 import { IResponse } from "../types/IResponse";
 
-export class Network {
+export class Network implements INetwork {
     private giphyFetch;
     private post;
 
@@ -34,6 +35,15 @@ export class Network {
             }
         } catch(err) {
             throw err;
+        }
+    }
+
+    async addImage(boardId: string, image: IImage): Promise<boolean> {
+        try {
+            const progressEvent = await this.post("addImage", { boardId, ...image });
+            return true;
+        } catch(err) {
+            return false;
         }
     }
 }

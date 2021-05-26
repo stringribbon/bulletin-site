@@ -4,5 +4,6 @@ import { IImage } from './IImage';
 
 export interface INetwork {
     fetchGiphySearch(term: string, offset: number, limit: number): Promise<IGif[]>,
-    fetchBoardImages(boardId: string, startTimestamp: number): Promise<IResponse<IImage[]>>
+    fetchBoardImages(boardId: string, startTimestamp: number): Promise<IResponse<IImage[]>>,
+    addImage(boardId: string, image: IImage): Promise<boolean>
 }
