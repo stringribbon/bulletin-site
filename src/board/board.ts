@@ -24,10 +24,11 @@ export function displayBoard(id: string): void {
         showGifPicker();
     });
 
-    registerScroller('#top-scroller', '#image-area', 0, -6);
-    registerScroller('#right-scroller', '#image-area', 6, 0);
-    registerScroller('#bottom-scroller', '#image-area', 0, 6);
-    registerScroller('#left-scroller', '#image-area', -6, 0);
+    const scrollSpeed = 10;
+    registerScroller('#top-scroller', '#board', 0, -scrollSpeed);
+    registerScroller('#right-scroller', '#board', scrollSpeed, 0);
+    registerScroller('#bottom-scroller', '#board', 0, scrollSpeed);
+    registerScroller('#left-scroller', '#board', -scrollSpeed, 0);
 
     updateBoard();
     // setInterval(updateBoard, 5000);
