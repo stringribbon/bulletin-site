@@ -1,0 +1,12 @@
+#image-limit {
+    display: flex;
+    align-items: center;
+}
+
+#image-limit-text {
+    background: rgba(0,0,0, 0.75);
+    color: white;
+    padding: 4px 10px;
+    width: 236px;
+    text-align: center;
+}

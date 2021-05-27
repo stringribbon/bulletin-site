@@ -6,8 +6,9 @@ import { IImage } from '../types/IImage';
 import { registerScroller } from '../scrollers/scrollers';
 import { INetwork } from '../types/INetwork';
 import { startPlacement } from '../image-placer/image-placer';
+import { displayLimitSelector, getImageLimit } from './image-limit';
 
-const MAX_IMAGES = 20;
+let imageLimit: number;
 let network: INetwork;
 let boardId: string;
 let lastUpdateTimestamp: number;
@@ -28,6 +29,9 @@ export function displayBoard(id: string, networkObj: INetwork): void {
     $('#add-button').on('click', () => {
         showGifPicker(network, onImageSelected);
     });
+
+    displayLimitSelector(onImageLimitChanged);
+    imageLimit = getImageLimit();
 
     const scrollSpeed = 10;
     registerScroller('#top-scroller', '#board', 0, -scrollSpeed);
@@ -58,8 +62,8 @@ function rescheduleRefresh(time: number) {
 
 const animationClasses = ['image-fall', 'image-sideflip', 'image-jump'];
 function addNewImages(newImages: IImage[], firstUpdate=false) {
-    const numImagesAllowed = MAX_IMAGES + $('.temp-image').length + $('.being-placed').length;
-    const imagesToAdd = newImages.length > MAX_IMAGES ? newImages.slice(-MAX_IMAGES) : newImages;
+    const numImagesAllowed = imageLimit + $('.temp-image').length + $('.being-placed').length;
+    const imagesToAdd = newImages.length > imageLimit ? newImages.slice(-imageLimit) : newImages;
     let numToRemove = 0;
 
     if ($('#image-area').children().length + imagesToAdd.length > numImagesAllowed) {
@@ -94,4 +98,14 @@ function onImageSelected(url: string) {
 function onImagePlaced(image: IImage) {
     rescheduleRefresh(750);
     network.addImage(boardId, image);
+}
+
+function onImageLimitChanged(newLimit: number) {
+    if (newLimit > imageLimit) {
+        $('#image-area').empty();
+        lastUpdateTimestamp = 0;
+    }
+
+    imageLimit = newLimit;
+    rescheduleRefresh(1);
 }

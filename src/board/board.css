@@ -60,6 +60,12 @@
     bottom: 0;
 }
 
+#image-limit {
+    position: fixed;
+    left: 20px;
+    bottom: 20px;
+}
+
 .image-bounce {
     animation-name: bounce;
     animation-duration: 0.75s;
