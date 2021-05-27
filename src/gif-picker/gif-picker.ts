@@ -32,7 +32,11 @@ async function doSearch() {
     const term = ($('#search-input').val() as string).trim();
     if (!term) return;
 
+    $('#search-button-text').hide();
+    $('#search-button-spinner').show();
     const searchResult = await network.fetchGiphySearch(term, 0, 10);
+    $('#search-button-text').show();
+    $('#search-button-spinner').hide();
     showSelection(searchResult);
 }
 

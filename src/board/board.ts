@@ -69,9 +69,6 @@ function addNewImages(newImages: IImage[], firstUpdate=false) {
 }
 
 function elementMatchesImage(el: JQuery, img: IImage) {
-    console.log(el.attr('src'), img.url);
-    console.log(parseInt(el.css('left')), img.x);
-    console.log(parseInt(el.css('top')), img.y);
     return el.attr('src') === img.url && parseInt(el.css('left')) === img.x && parseInt(el.css('top')) === img.y
 }
 

@@ -28,7 +28,6 @@
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    padding: 20px 0;
     overflow: scroll;
 }
 
@@ -53,6 +52,12 @@
 }
 
 #search-button {
+    position: relative;
     width: 100px;
     height: 46px;
+}
+
+#search-button-spinner {
+    width: 30px;
+    display: none;
 }
