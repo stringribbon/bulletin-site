@@ -11,6 +11,10 @@ module.exports = {
         exclude: /node_modules/,
       },
       {
+        test: /\.(png|jpg|jpeg)$/,
+        loader: 'url-loader'
+      },
+      {
         test: /\.m?js$/,
         exclude: /(node_modules)/,
         use: {

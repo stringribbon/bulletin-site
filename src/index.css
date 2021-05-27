@@ -11,3 +11,10 @@ body {
     z-index: 1;
     background-color: rgba(0, 0, 0, 0.35);
 }
+
+.yellow-rounded {
+    border-radius: 20px;
+    color: black;
+    background: #e9d200;
+    font-size: 16px;
+}
