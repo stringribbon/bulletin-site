@@ -7,6 +7,7 @@ import { registerScroller } from '../scrollers/scrollers';
 import { INetwork } from '../types/INetwork';
 import { startPlacement } from '../image-placer/image-placer';
 
+const MAX_IMAGES = 20;
 let network: INetwork;
 let boardId: string;
 let lastUpdateTimestamp: number;
@@ -57,7 +58,16 @@ function rescheduleRefresh(time: number) {
 
 const animationClasses = ['image-fall', 'image-sideflip', 'image-jump'];
 function addNewImages(newImages: IImage[], firstUpdate=false) {
-    newImages.forEach(img => {
+    const numImagesAllowed = MAX_IMAGES + $('.temp-image').length + $('.being-placed').length;
+    const imagesToAdd = newImages.length > MAX_IMAGES ? newImages.slice(-MAX_IMAGES) : newImages;
+    let numToRemove = 0;
+
+    if ($('#image-area').children().length + imagesToAdd.length > numImagesAllowed) {
+        numToRemove = ($('#image-area').children().length + imagesToAdd.length) - numImagesAllowed;
+        $('#image-area').children().slice(0, numToRemove).each((_, item) => {flagImageDeletion($(item))})
+    }
+
+    imagesToAdd.forEach(img => {
         let shouldAnimate = !firstUpdate;
         $('.temp-image').each((i, el) => {
             if (elementMatchesImage($(el), img)) shouldAnimate = false;
@@ -66,6 +76,11 @@ function addNewImages(newImages: IImage[], firstUpdate=false) {
             `<img src=${img.url} class="${shouldAnimate ? animationClasses[Math.floor(Math.random() * animationClasses.length)] : '' }" style="width: ${img.width}px; left: ${img.x}px; top: ${img.y}px">`
         );
     });
+}
+
+function flagImageDeletion(el: JQuery) {
+    el.addClass('image-drop');
+    setTimeout(() => el.remove(), 5000);
 }
 
 function elementMatchesImage(el: JQuery, img: IImage) {

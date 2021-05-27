@@ -83,6 +83,13 @@
     animation-timing-function: ease-in-out;
 }
 
+.image-drop {
+    animation-name: drop;
+    animation-duration: 5s;
+    animation-timing-function: ease-in-out;
+    transform-origin: 0 0;
+}
+
 @keyframes bounce {
     0% { transform: scale(1); }
     50% { transform: scale(1.5); }
@@ -101,8 +108,15 @@
 }
 
 @keyframes jump {
-    0% { -webkit-transform: rotateX(90deg) }
-    30% { -webkit-transform: translateY(300px) rotateX(0); }
-    70% { -webkit-transform: translateY(-300px) rotateZ(1080deg); }
-    100% { -webkit-transform: translateY(0) rotateZ(1080deg); }
+    0% { transform: rotateX(90deg) }
+    30% { transform: translateY(300px) rotateX(0); }
+    70% { transform: translateY(-300px) rotateZ(1080deg); }
+    100% { transform: translateY(0) rotateZ(1080deg); }
+}
+
+@keyframes drop {
+    20% { transform: rotateZ(75deg) }
+    40% { transform: rotateZ(35deg) }
+    60% { transform: rotateZ(55deg) }
+    100% { transform: translateY(2500px) rotateZ(60deg) }
 }
