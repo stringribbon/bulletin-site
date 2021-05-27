@@ -3,7 +3,7 @@ import boardHtml from './board.html';
 import "./board.css";
 import { showGifPicker } from '../gif-picker/gif-picker';
 import { IImage } from '../types/IImage';
-import { registerScroller } from '../scrollers/scrollers';
+import { registerScroller, setScrollWithin } from '../scrollers/scrollers';
 import { INetwork } from '../types/INetwork';
 import { startPlacement } from '../image-placer/image-placer';
 import { displayLimitSelector, getImageLimit } from './image-limit';
@@ -33,7 +33,8 @@ export function displayBoard(id: string, networkObj: INetwork): void {
     displayLimitSelector(onImageLimitChanged);
     imageLimit = getImageLimit();
 
-    const scrollSpeed = 10;
+    const scrollSpeed = 12;
+    setScrollWithin($('#image-area'));
     registerScroller('#top-scroller', '#board', 0, -scrollSpeed);
     registerScroller('#right-scroller', '#board', scrollSpeed, 0);
     registerScroller('#bottom-scroller', '#board', 0, scrollSpeed);

@@ -9,8 +9,8 @@
     position: relative;
     min-width: 100vw;
     min-height: 100vh;
-    width: 1500px;
-    height: 1500px;
+    width: 2000px;
+    height: 1100px;
     background: url("/src/assets/corkboard.jpg") repeat;
     background-size: 100%;
 }
