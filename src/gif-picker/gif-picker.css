@@ -3,7 +3,7 @@
     height: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;;
+    align-items: center;
 }
 
 #gif-scroller {
@@ -13,17 +13,36 @@
     max-height: 80%;
     background-color: white;
     overflow: scroll;
+    padding: 30px;
 }
 
 #gif-grid {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     flex-wrap: wrap;
     padding: 20px 0;
 }
 
 #gif-grid img {
-    width: 45%;
+    width: 48%;
     max-height: 300px;
     margin-bottom: 10px;
+}
+
+#search-area {
+    display: flex;
+    align-items: center;
+}
+
+#search-input {
+    flex-grow: 1;
+    height: 40px;
+    margin-right: 10px;
+    font-size: 16px;
+    padding-left: 10px;
+}
+
+#search-button {
+    width: 100px;
+    height: 46px;
 }
