@@ -12,22 +12,27 @@ export async function showGifPicker(networkObj: INetwork, callback: Callback) {
     network = networkObj;
     selectedCallback = callback;
 
-    hide();
-    $('#board-overlay').show();
-    $(pickerHtml).appendTo('#board');
+    if ($('#gif-picker').length === 0) {
+        $(pickerHtml).appendTo('#board');
+        $('#search-input').on( "keydown", event => {
+            if (event.key === "Enter") doSearch();
+        });
+        $('#search-button').on("click", () => {
+            doSearch();
+        });
+    } else {
+        $('#gif-picker').show();
+    }
 
+    $('#board-overlay').show();
     $('#board-overlay').on('click', () => hide(true));
-    $('#search-input').on( "keydown", event => {
-        if (event.key === "Enter") doSearch();
-    });
-    $('#search-button').on("click", () => {
-        doSearch();
-    });
 }
 
 async function doSearch() {
-    console.log("Doin thangs")
-    const searchResult = await network.fetchGiphySearch("rat", 0, 10);
+    const term = ($('#search-input').val() as string).trim();
+    if (!term) return;
+
+    const searchResult = await network.fetchGiphySearch(term, 0, 10);
     showSelection(searchResult);
 }
 
@@ -43,6 +48,6 @@ function showSelection(gifSelection: IGif[]) {
 
 function hide(cancel=false) {
     $('#board-overlay').off('click');
-    $('#gif-picker').remove();
+    $('#gif-picker').hide();
     if (cancel) $('#board-overlay').hide();
 }

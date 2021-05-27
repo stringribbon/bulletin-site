@@ -17,9 +17,11 @@
     max-width: 80%;
     max-height: 80%;
     background-color: white;
-    overflow: scroll;
+    overflow: hidden;
     padding: 30px;
     pointer-events: all;
+    display: flex;
+    flex-direction: column;
 }
 
 #gif-grid {
@@ -27,6 +29,7 @@
     justify-content: space-between;
     flex-wrap: wrap;
     padding: 20px 0;
+    overflow: scroll;
 }
 
 #gif-grid img {
@@ -38,6 +41,7 @@
 #search-area {
     display: flex;
     align-items: center;
+    margin-bottom: 15px;
 }
 
 #search-input {
