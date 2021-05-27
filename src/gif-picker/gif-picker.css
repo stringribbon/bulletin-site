@@ -4,6 +4,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 2;
+    pointer-events: none;
 }
 
 #gif-scroller {
@@ -14,6 +19,7 @@
     background-color: white;
     overflow: scroll;
     padding: 30px;
+    pointer-events: all;
 }
 
 #gif-grid {
