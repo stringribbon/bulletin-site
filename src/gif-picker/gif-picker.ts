@@ -43,7 +43,7 @@ async function doSearch(firstSearch: boolean) {
     }
     if (searchOffset > 200) return;
 
-    const numToSearch = 16;
+    const numToSearch = 40;
     $('#search-button-text').hide();
     $('#search-button-spinner').show();
     $('#search-button').attr('disabled', "true");

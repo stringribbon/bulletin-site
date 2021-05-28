@@ -40,7 +40,7 @@ export class Network implements INetwork {
 
     async addImage(boardId: string, image: IImage): Promise<boolean> {
         try {
-            const progressEvent = await this.post("addImage", { boardId, ...image });
+            await this.post("addImage", { boardId, ...image });
             return true;
         } catch(err) {
             return false;
