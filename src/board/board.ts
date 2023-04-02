@@ -1,6 +1,8 @@
 import $ from 'jquery';
 import boardHtml from './board.html';
 import "./board.css";
+import serverOverlayHtml from "./server-overlay.html";
+import "./server-overlay.css";
 import { showGifPicker } from '../gif-picker/gif-picker';
 import { IImage } from '../types/IImage';
 import { registerScroller, setScrollWithin } from '../scrollers/scrollers';
@@ -25,6 +27,7 @@ export function displayBoard(id: string, networkObj: INetwork): void {
     lastUpdateTimestamp = 0;
 
     $(boardHtml).appendTo('body');
+    $(serverOverlayHtml).appendTo('body');
 
     $('#add-button').on('click', () => {
         showGifPicker(network, onImageSelected);
@@ -49,6 +52,7 @@ async function updateBoard() {
         addNewImages(response.data, lastUpdateTimestamp === 0);
         lastUpdateTimestamp = response.timestamp;
         $('.temp-image').remove();
+        $( "#server-overlay" ).remove();
     } catch(err) {
         console.log("Board refresh request failed.", err);
     }
